@@ -10,6 +10,8 @@ const buttonCancelForm = document.querySelector('.js-btn-cancel');
 const inputDesc = document.querySelector('.js-input-desc');
 const inputPhoto = document.querySelector('.js-input-photo');
 const inputName = document.querySelector('.js-input-name');
+const inputRace = document.querySelector('.js-input-race');
+
 const linkNewFormElememt = document.querySelector('.js-button-new-form');
 const labelMesageError = document.querySelector('.js-label-error');
 const input_search_desc = document.querySelector('.js_in_search_desc');
@@ -80,16 +82,35 @@ function handleClickNewCatForm(event) {
     }
 }
 //Adicionar nuevo gatito
+
+
 function addNewKitten(event) {
     event.preventDefault();
     const valueDesc = inputDesc.value;
     const valuePhoto = inputPhoto.value;
     const valueName = inputName.value;
+    const valueRace = inputRace.value;
+    const newKittenDataObject = {
+    image: valuePhoto,
+    name: valueName,
+    desc: valueDesc,
+    race: valueRace,
+    };
+    
     if (valueDesc === "" && valuePhoto === "" && valueName === "") {
         labelMesageError.innerHTML = "Debe rellenar todos los valores";
     } else {
         if (valueDesc !== "" && valuePhoto !== "" && valueName !== "") {
-            labelMesageError.innerHTML = "";
+
+// AÑADIMOS ESTA PARTE DE ABAJO A LA FUNCIÓN PARA QUE AGREGUE A LA LISTA EL NUEVO OBJETO PERO NO FUNCIONA
+
+            kittenDataList.push(newKittenDataObject);
+            valueDesc.innerHTML = "";
+            valuePhoto.innerHTML = "";
+            valueName.innerHTML = "";
+            valueRace.innerHTML = "";
+            labelMesageError.innerHTML = 'Mola! Un nuevo gatito en Adalab!';
+            renderKittenList(kittenDataList);
         }
     }
 }
