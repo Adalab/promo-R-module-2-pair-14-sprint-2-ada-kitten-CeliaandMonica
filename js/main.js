@@ -21,7 +21,7 @@ const input_search_desc = document.querySelector('.js_in_search_desc');
 const kittenData_1 = {
     image: "https://ychef.files.bbci.co.uk/976x549/p07ryyyj.jpg",
     name: "Anastacio",
-    desc: "Ruiseño, juguetón, le guta estar tranquilo y que nadie le moleste. Es una maravilla acariciarle!",
+    desc: "Ruiseño, bello, juguetón, le guta estar tranquilo y que nadie le moleste. Es una maravilla acariciarle!",
     race: "British Shorthair",
 };
 const kittenData_2 = {
@@ -33,7 +33,7 @@ const kittenData_2 = {
 const kittenData_3 = {
     image: "https://images.emedicinehealth.com/images/article/main_image/cat-scratch-disease.jpg",
     name: "Cielo",
-    desc: "Ruiseño, juguetón, le guta estar tranquilo y que nadie le moleste. Es una maravilla acariciarle!",
+    desc: "Ruiseño, bello, juguetón, le guta estar tranquilo y que nadie le moleste. Es una maravilla acariciarle!",
     race: "British Shorthair",
 };
 
@@ -102,13 +102,11 @@ function addNewKitten(event) {
     } else {
         if (valueDesc !== "" && valuePhoto !== "" && valueName !== "") {
 
-// AÑADIMOS ESTA PARTE DE ABAJO A LA FUNCIÓN PARA QUE AGREGUE A LA LISTA EL NUEVO OBJETO PERO NO FUNCIONA
-
             kittenDataList.push(newKittenDataObject);
-            valueDesc.innerHTML = "";
-            valuePhoto.innerHTML = "";
-            valueName.innerHTML = "";
-            valueRace.innerHTML = "";
+            inputDesc.value = "";
+            inputPhoto.value = "";
+            inputName.value = "";
+            inputRace.value = "";
             labelMesageError.innerHTML = 'Mola! Un nuevo gatito en Adalab!';
             renderKittenList(kittenDataList);
         }
@@ -123,19 +121,43 @@ function cancelNewKitten(event) {
     inputName.value = "";
 }
 
-//Filtrar por descripción
+//Filtrar por descripción    ATASCADAS AQUI
+// function filterKitten(event) {
+//     event.preventDefault();
+//     console.log('hola');
+//     listElement.innerHTML = '';
+//     if (kittenDesc1.includes(descrSearchText)) {
+//       listElement.innerHTML += kittenOne;
+//     }
+//     if (kittenDesc2.includes(descrSearchText)) {
+//       listElement.innerHTML += kittenTwo;
+//     }
+//     if (kittenDesc3.includes(descrSearchText)) {
+//       listElement.innerHTML += kittenThree;
+//     }
+//   } 
 function filterKitten(event) {
     event.preventDefault();
     const descrSearchText = input_search_desc.value;
-    listElement.innerHTML = "";
+    const chosenKitten = kittenDataList.filter((kitten) => kitten.desc.includes(descrSearchText));
+    for (const kitten of chosenKitten) {
+        listElement.innerHTML += renderKitten(chosenKitten[kitten]);
+    }
+
+    //Modifica el código:
+    //Haz un filter sobre el listado de gatitos
+    //Vuelve a pintar el listado de gatitos filtrados en el HTML.
+    
+   /* listElement.innerHTML = "";
     for (const kittenItem of kittenDataList) {
         if (kittenItem.desc.includes(descrSearchText)) {
             listElement.innerHTML += renderKitten(kittenItem);
         }
-    }
+    }*/
 }
 
-//Mostrar el litado de gatitos en ell HTML
+
+//Mostrar el litado de gatitos en el HTML
 renderKittenList(kittenDataList);
 
 //Eventos
