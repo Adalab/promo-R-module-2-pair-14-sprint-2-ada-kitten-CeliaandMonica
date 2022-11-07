@@ -138,10 +138,12 @@ function cancelNewKitten(event) {
 //   } 
 function filterKitten(event) {
     event.preventDefault();
+    listElement.innerHTML = ""; //vaciamos la lista
     const descrSearchText = input_search_desc.value;
     const chosenKitten = kittenDataList.filter((kitten) => kitten.desc.includes(descrSearchText));
     for (const kitten of chosenKitten) {
-        listElement.innerHTML += renderKitten(chosenKitten[kitten]);
+        listElement.innerHTML += renderKitten(kitten);
+        //listElement.innerHTML += renderKitten(chosenKitten[kitten]);
     }
 
     //Modifica el código:
