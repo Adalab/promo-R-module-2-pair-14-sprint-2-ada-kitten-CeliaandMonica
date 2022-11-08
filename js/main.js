@@ -15,6 +15,9 @@ const inputRace = document.querySelector('.js-input-race');
 const linkNewFormElememt = document.querySelector('.js-button-new-form');
 const labelMesageError = document.querySelector('.js-label-error');
 const input_search_desc = document.querySelector('.js_in_search_desc');
+const input_search_race = document.querySelector('.js_in_search_race');
+
+
 
 
 //Objetos con cada gatito
@@ -121,41 +124,36 @@ function cancelNewKitten(event) {
     inputName.value = "";
 }
 
-//Filtrar por descripción    ATASCADAS AQUI
-// function filterKitten(event) {
-//     event.preventDefault();
-//     console.log('hola');
-//     listElement.innerHTML = '';
-//     if (kittenDesc1.includes(descrSearchText)) {
-//       listElement.innerHTML += kittenOne;
-//     }
-//     if (kittenDesc2.includes(descrSearchText)) {
-//       listElement.innerHTML += kittenTwo;
-//     }
-//     if (kittenDesc3.includes(descrSearchText)) {
-//       listElement.innerHTML += kittenThree;
-//     }
-//   } 
+//Filtrar por descripción y raza
+
+// function filterKitten(ev) {
+//     //Completa el código:
+//     //Haz un filter anidado sobre el listado de gatitos
+//     const kittenListFiltered = kittenDataList.
+//           .filter()
+//           .filter();
+//     //Vuelve a pintar el listado de gatitos filtrados en el HTML.
+//     renderKittenList(kittenListFiltered);
+//   }
+
+
 function filterKitten(event) {
     event.preventDefault();
-    listElement.innerHTML = ""; //vaciamos la lista
+    const warning = document.querySelector ('.js-warning');
     const descrSearchText = input_search_desc.value;
-    const chosenKitten = kittenDataList.filter((kitten) => kitten.desc.includes(descrSearchText));
-    for (const kitten of chosenKitten) {
-        listElement.innerHTML += renderKitten(kitten);
-        //listElement.innerHTML += renderKitten(chosenKitten[kitten]);
-    }
+    const raceSearchText = input_search_race.value;
 
-    //Modifica el código:
-    //Haz un filter sobre el listado de gatitos
-    //Vuelve a pintar el listado de gatitos filtrados en el HTML.
-    
-   /* listElement.innerHTML = "";
-    for (const kittenItem of kittenDataList) {
-        if (kittenItem.desc.includes(descrSearchText)) {
-            listElement.innerHTML += renderKitten(kittenItem);
-        }
-    }*/
+if (descrSearchText==='' && raceSearchText===''){
+warning.innerHTML = 'Debes completar alguno de los dos campos.'
+} else
+listElement.innerHTML = ""; 
+    chosenKitten = kittenDataList
+    .filter((kitten) => kitten.desc.includes(descrSearchText))
+    .filter((kitten) => kitten.race.includes(raceSearchText));
+console.log (chosenKitten);
+for (const kitten of chosenKitten) {
+    listElement.innerHTML += renderKitten(kitten);
+    }
 }
 
 
@@ -169,7 +167,7 @@ buttonAdd.addEventListener("click", addNewKitten);
 buttonCancelForm.addEventListener("click", cancelNewKitten);
 
 
-
+/// NOS TOCA HACER EL EJERCICIO 2.13 (PETICIONES AL SERVIDOR)
 
 
 
